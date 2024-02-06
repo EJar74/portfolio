@@ -76,16 +76,14 @@ const ExperienceSection = () => {
           />
         ))}
       </div>
-      <div className="absolute left-4 bottom-4 md:left-8 md:bottom-8">
-        <a onClick={() => scrollToSection('about')} className="cursor-pointer text-4xl hover:text-gray-300 transition duration-300 ease-in-out">
-          ↑
-        </a>
-      </div>
-      <div className="absolute right-4 bottom-4 md:right-8 md:bottom-8">
-        <a onClick={() => scrollToSection('projects')} className="cursor-pointer text-4xl hover:text-gray-300 transition duration-300 ease-in-out">
-          ↓
-        </a>
-      </div>
+        <div className="flex justify-between w-full max-w-6xl px-4 absolute bottom-4 md:bottom-8">
+            <button onClick={() => scrollToSection('about')} className="text-4xl text-white hover:text-gray-300 transition duration-300 ease-in-out">
+                ↑
+            </button>
+            <button onClick={() => scrollToSection('projects')} className="text-4xl text-white hover:text-gray-300 transition duration-300 ease-in-out">
+                ↓
+            </button>
+        </div>
     </section>
   );
 };

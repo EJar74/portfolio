@@ -31,15 +31,13 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-      <div className="absolute left-2 bottom-2 md:left-8 md:bottom-8">
-        <a onClick={() => scrollToSection('home')} className="cursor-pointer text-4xl hover:text-gray-300 transition duration-300 ease-in-out">
-          ↑
-        </a>
-      </div>
-      <div className="absolute right-2 bottom-2 md:right-8 md:bottom-8">
-        <a onClick={() => scrollToSection('experience')} className="cursor-pointer text-4xl hover:text-gray-300 transition duration-300 ease-in-out">
-          ↓
-        </a>
+      <div className="flex justify-between w-full max-w-6xl px-4 absolute bottom-4 md:bottom-8">
+        <button onClick={() => scrollToSection('home')} className="text-4xl text-white hover:text-gray-300 transition duration-300 ease-in-out">
+            ↑
+        </button>
+        <button onClick={() => scrollToSection('experience')} className="text-4xl text-white hover:text-gray-300 transition duration-300 ease-in-out">
+            ↓
+        </button>
       </div>
     </section>
   );

@@ -48,39 +48,38 @@ const ProjectsSection = () => {
     };
 
     return (
-        <section id="projects" className="min-h-screen pt-20 p-8 relative z-10">
-            <h2 className="text-4xl font-bold text-white text-center mb-8">Projects</h2>
-            <Swiper
-                modules={[Navigation, Pagination]} // Pass the modules
-                spaceBetween={30}
-                slidesPerView={1} // Adjust this value as needed
-                navigation // Enable navigation
-                pagination={{ clickable: true }} // Enable pagination
-                breakpoints={{
-                    // Adjust the number of slides per view based on breakpoints
-                    640: {
-                        slidesPerView: 2,
-                    },
-                    768: {
-                        slidesPerView: 3,
-                    },
-                    1024: {
-                        slidesPerView: 4,
-                    },
-                }}
-            >
-                {projects.map((project:any, index:number) => (
-                    <SwiperSlide key={project.id || index}>
-                        <ProjectItem project={project} />
-                    </SwiperSlide>
-                ))}
-            </Swiper>
-            <div className="absolute left-4 bottom-4 md:left-8 md:bottom-8">
+        <section id="projects" className="flex flex-col items-center justify-center min-h-screen pt-20 px-8 relative z-10">
+            <h2 className="text-5xl font-bold text-white text-center mb-8">Projects</h2>
+            <div className="w-full max-w-6xl">
+                <Swiper
+                    modules={[Navigation, Pagination]}
+                    spaceBetween={30}
+                    slidesPerView={1}
+                    navigation
+                    pagination={{ clickable: true }}
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 2,
+                        },
+                        768: {
+                            slidesPerView: 3,
+                        },
+                        1024: {
+                            slidesPerView: 4,
+                        },
+                    }}
+                >
+                    {projects.map((project:any, index:number) => (
+                        <SwiperSlide key={project.id || index}>
+                            <ProjectItem project={project} />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+            <div className="flex justify-between w-full max-w-6xl px-4 absolute bottom-4 md:bottom-8">
                 <button onClick={() => scrollToSection('experience')} className="text-4xl text-white hover:text-gray-300 transition duration-300 ease-in-out">
                     ↑
                 </button>
-            </div>
-            <div className="absolute right-4 bottom-4 md:right-8 md:bottom-8">
                 <button onClick={() => scrollToSection('contact')} className="text-4xl text-white hover:text-gray-300 transition duration-300 ease-in-out">
                     ↓
                 </button>
