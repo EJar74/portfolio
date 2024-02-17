@@ -12,16 +12,19 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="min-h-screen p-8 flex flex-col items-center justify-center relative z-10">
-      <div className="text-center z-20 bg-black rounded-lg p-6">
+      <div className="text-center z-20 bg-black rounded-lg p-6 opacity-80">
         <h2 className="text-5xl font-bold text-white mb-4">{"Let's Connect"}</h2>
         <p className="text-white text-lg mb-6 max-w-md">
           {"I'm always open to new connections and opportunities. Looking forward to hearing from you!"}
         </p>
         <a href="mailto:Eli.Jaramillo74@gmail.com" className="text-white text-lg hover:opacity-75 transition-opacity duration-300 block">
-          {"Send me an email"}
+          {"Email"}
+        </a>
+        <a href="https://www.linkedin.com/in/eli-jaramillo" target="_blank" rel="noopener noreferrer" className="text-white text-lg hover:opacity-75 transition-opacity duration-300 mt-2 block">
+          {"LinkedIn"}
         </a>
         <a href="https://github.com/EJar74" target="_blank" rel="noopener noreferrer" className="text-white text-lg hover:opacity-75 transition-opacity duration-300 mt-2 block">
-          {"Visit my GitHub"}
+          {"GitHub"}
         </a>
       </div>
       <button 
