@@ -14,9 +14,15 @@ const experiences:any = [
   // },
   // ... more experiences
   {
+    position:"Small Business Owner",
+    company:"California Thrift Store",
+    period:"Dec 2023 - Present",
+    description:"Lead digital transformation of operations to lift inventory turnover ratio through multichannel retailing."
+  },
+  {
     position: "Solutions Engineer II",
     company: "Capital Group",
-    period: "Apr 2023 - Jan 2024",
+    period: "Apr 2023 - Dec 2023",
     description: "Managed and expanded custom HR and review systems, incorporating advanced automation to enhance operational efficiency and stakeholder satisfaction."
   },
   {
