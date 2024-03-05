@@ -99,7 +99,7 @@ const Header = () => {
                     </a>
                   ) : (
                     <a
-                      href="/Resume E.Jaramillo 2024.pdf"
+                      href="/Eli_Jaramillo_Resume.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-lg font-medium cursor-pointer block py-2 md:py-0 px-4"
