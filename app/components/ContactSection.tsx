@@ -26,9 +26,6 @@ const ContactSection = () => {
         <a href="https://github.com/EJar74" target="_blank" rel="noopener noreferrer" className="text-white text-lg hover:opacity-75 transition-opacity duration-300 mt-2 block">
           {"GitHub"}
         </a>
-        <a href="https://twitter.com/eezelee" target="_blank" rel="noopener noreferrer" className="text-white text-lg hover:opacity-75 transition-opacity duration-300 mt-2 block">
-          {"Twitter"}
-        </a>
       </div>
       <button 
         onClick={scrollToProjects} 
