@@ -14,7 +14,7 @@ const experiences:any = [
   // },
   // ... more experiences
   {
-    position:"Small Business Owner",
+    position:"Consultant",
     company:"California Thrift Store",
     period:"Dec 2023 - Present",
     description:"Lead digital transformation of operations to lift inventory turnover ratio through multichannel retailing."
