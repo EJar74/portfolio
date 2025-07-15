@@ -41,7 +41,7 @@ const Background = () => {
       setCircles((prevCircles:any) => [...prevCircles, circle]);
     };
 
-    const intervalId = setInterval(addCircle, 3000);
+    const intervalId = setInterval(addCircle, 1000);
 
     return () => clearInterval(intervalId);
   }, [circles.length]);

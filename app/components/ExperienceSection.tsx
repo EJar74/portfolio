@@ -14,9 +14,15 @@ const experiences:any = [
   // },
   // ... more experiences
   {
-    position:"Consultant",
-    company:"California Thrift Store",
-    period:"Dec 2023 - Present",
+    position:"Senior Application Engineer",
+    company:"NBCUniversal",
+    period:"Dec 2024 - Present",
+    description:"Support enterprise-scale payment systems handling $10bn+ annual revenue across 200mn+ transactions for NBCUniversal’s Destinations & Experiences (UDX) division"
+  },
+  {
+    position:"Technical Consultant",
+    company:"EJ Digital",
+    period:"Jan 2024 - Nov 2024",
     description:"Lead digital transformation of operations to lift inventory turnover ratio through multichannel retailing."
   },
   {
@@ -45,7 +51,7 @@ const experiences:any = [
   },
   {
     position: "Research Protections Assistant",
-    company: "UCI Office of Research",
+    company: "UC Irvine Office of Research",
     period: "Nov 2017 - Jun 2018",
     description: "Managed research records and compliance documentation, ensuring organization and accessibility for audit and review processes."
   }  
