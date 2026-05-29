@@ -3,32 +3,195 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --ink: 7 7 10;
+  --gold: 212 175 55;
+  --gold-soft: 232 200 116;
+  --flux: 90 209 200;
+  --text: 244 244 245;
+  --text-dim: 161 161 170;
+  --text-faint: 125 125 137;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Consistent gold keyboard-focus ring across all interactive elements */
+:focus-visible {
+  outline: 2px solid rgba(212, 175, 55, 0.75);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-  @apply bg-black text-white;
+  color: rgb(var(--text));
+  background-color: rgb(var(--ink));
+  font-feature-settings: "ss01", "cv01";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Layered ambient base behind everything */
+.bg-stage {
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(212, 175, 55, 0.10), transparent 55%),
+    radial-gradient(90% 60% at 85% 110%, rgba(90, 209, 200, 0.06), transparent 60%),
+    rgb(var(--ink));
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
+      0 12px 40px -12px rgba(0, 0, 0, 0.7);
+  }
+  .glass-strong {
+    background: rgba(12, 12, 16, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .glass-hover {
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .glass-hover:hover {
+    border-color: rgba(212, 175, 55, 0.35);
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.2), 0 18px 50px -18px rgba(0, 0, 0, 0.8);
+    transform: translateY(-2px);
+  }
+  .hairline-gold {
+    border: 1px solid rgba(212, 175, 55, 0.28);
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .text-dim {
+    color: rgb(var(--text-dim));
+  }
+  .text-faint {
+    color: rgb(var(--text-faint));
+  }
+  /* Gradient gold text for emphasis words */
+  .text-gold-grad {
+    background: linear-gradient(100deg, #f4d98a 0%, #d4af37 45%, #b8902c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .shimmer-gold {
+    background: linear-gradient(
+      100deg,
+      #d4af37 0%,
+      #f7e6a8 25%,
+      #d4af37 50%,
+      #b8902c 75%,
+      #d4af37 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .ring-gold {
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.45), 0 0 28px -6px rgba(212, 175, 55, 0.5);
+  }
+  /* Section vertical rhythm */
+  .section-pad {
+    padding-top: clamp(5rem, 12vh, 9rem);
+    padding-bottom: clamp(5rem, 12vh, 9rem);
+  }
+  .perspective {
+    perspective: 1400px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  /* Hide scrollbar for horizontal strips */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Reveal-on-scroll base state (toggled to .is-visible by IntersectionObserver) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Architecture-diagram packet dots travelling a connector (replay via key remount).
+   Animate left/top so % is relative to the connector, not the dot. */
+@keyframes dotX-fwd {
+  0% { left: 2%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { left: 98%; opacity: 0; }
+}
+@keyframes dotX-rev {
+  0% { left: 98%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { left: 2%; opacity: 0; }
+}
+@keyframes dotY-fwd {
+  0% { top: 2%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { top: 98%; opacity: 0; }
+}
+@keyframes dotY-rev {
+  0% { top: 98%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { top: 2%; opacity: 0; }
+}
+.dot-x-fwd { animation: dotX-fwd var(--beam-dur, 950ms) ease-in-out 1 both; }
+.dot-x-rev { animation: dotX-rev var(--beam-dur, 950ms) ease-in-out 1 both; }
+.dot-y-fwd { animation: dotY-fwd var(--beam-dur, 950ms) ease-in-out 1 both; }
+.dot-y-rev { animation: dotY-rev var(--beam-dur, 950ms) ease-in-out 1 both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

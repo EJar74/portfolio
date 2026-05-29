@@ -1,34 +1,29 @@
-// pages/index.tsx
-
-import Head from 'next/head'
-import Header from './components/Header'
-import Main from './components/Main'
-import Background from './components/Background'
-import AboutSection from './components/About'
-import ExperienceSection from './components/ExperienceSection'
-import ProjectsSection from './components/ProjectsSection'
-import ContactSection from './components/ContactSection'
+import SystemPulse from "./components/SystemPulse";
+import Nav from "./components/Nav";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import FlagshipProject from "./components/FlagshipProject";
+import Experience from "./components/Experience";
+import Contact from "./components/Contact";
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>Eli Jaramillo</title>
-        <meta name="description" content="Portfolio of a Software Engineer & Product Manager" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
-        <link rel="icon" sizes="32x32" href="/favicon.ico" />
-        <link rel="icon" sizes="16x16" href="/favicon.ico" />
-      </Head>
-      <div className="relative min-h-screen">
-        <Background /> {/* This should come first to be under other elements */}
-        <Header />
-        <Main />
-        <AboutSection/>
-        <ExperienceSection/>
-        <ProjectsSection/>
-        <ContactSection/>
-      </div>
+      <SystemPulse />
+      <Nav />
+      <main className="relative z-10">
+        {/* pinned hero scene: the hero holds while the background camera dives.
+            Collapses to a normal screen for reduced-motion (no dead scroll). */}
+        <div className="relative min-h-[160svh] motion-reduce:min-h-[100svh]">
+          <div className="sticky top-0 min-h-[100svh]">
+            <Hero />
+          </div>
+        </div>
+        <About />
+        <FlagshipProject />
+        <Experience />
+        <Contact />
+      </main>
     </>
-  )
+  );
 }

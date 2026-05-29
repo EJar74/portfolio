@@ -1,40 +1,63 @@
-'use client'
-// components/AboutSection.tsx
-import React from 'react';
-import Image from 'next/image';
+"use client";
+import Image from "next/image";
+import { ABOUT } from "../data/content";
+import { Reveal, SectionHeading } from "./ui";
 
-const AboutSection = () => {
-  const scrollToSection = (sectionId: any) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
+const About = () => {
   return (
-    <section id="about"
-             className="flex flex-col justify-center items-center text-white px-4 md:px-8 py-10 md:py-0 relative z-10 min-h-screen">
-      <div className="container mx-auto flex flex-col items-center text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">About</h2>
-        <div className="flex flex-col md:flex-row md:items-center space-y-6 md:space-y-0 md:space-x-6 bg-black rounded-lg p-4 md:p-8">
-          <div className="w-full text-gray-300 text-xs md:text-base">
-            <p>
-            {"I'm Eli Jaramillo, a passionate Software Engineer with a keen interest in stepping into the Product Management realm. My educational journey at the University of California, Irvine, where I earned dual degrees in Business Economics and Informatics with a specialization in Human-Computer Interaction, has equipped me with a unique blend of skills that bridge the gap between technology and business. My experience at Capital Group, managing projects that significantly improved operational efficiency and user satisfaction, has honed my ability to translate complex technical challenges into user-centric solutions. I'm driven by the challenge of innovating and optimizing products to enhance people's lives and businesses. Welcome to my portfolio, where I share my journey, projects, and the impact of my work."}
-              {/* Your full biography and education information goes here */}
-            </p>
+    <section id="about" className="section-pad relative mx-auto max-w-6xl px-5">
+      <Reveal>
+        <SectionHeading eyebrow="About" title="The short version." />
+      </Reveal>
+
+      <div className="mt-12 grid items-start gap-10 md:grid-cols-[0.9fr_1.1fr] md:gap-14">
+        {/* portrait */}
+        <Reveal className="order-2 md:order-1">
+          <div className="glass relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-xl2 md:max-w-sm">
+            <Image
+              src="/portrait.png"
+              alt="Eli Jaramillo"
+              fill
+              sizes="(max-width: 768px) 80vw, 360px"
+              className="object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
           </div>
+        </Reveal>
+
+        {/* copy */}
+        <div className="order-1 md:order-2">
+          {ABOUT.paragraphs.map((p, i) => (
+            <Reveal key={i} delay={i * 80}>
+              <p className="mb-5 text-lg leading-relaxed text-dim">{p}</p>
+            </Reveal>
+          ))}
+
+          {/* bridge pull-quote */}
+          <Reveal delay={160}>
+            <blockquote className="glass mt-2 rounded-xl2 border-l-2 border-l-gold/70 p-5 md:p-6">
+              <p className="text-base leading-relaxed text-white/90 md:text-lg">
+                {ABOUT.bridge}
+              </p>
+            </blockquote>
+          </Reveal>
+
+          {/* core stack, kept understated on purpose */}
+          <Reveal delay={220}>
+            <div className="mt-8">
+              <p className="font-mono text-xs uppercase tracking-wider text-faint">
+                Core stack
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-dim">
+                {ABOUT.stack.join("   ·   ")}
+              </p>
+              <p className="mt-3 text-sm text-gold/80">{ABOUT.languages}</p>
+            </div>
+          </Reveal>
         </div>
-      </div>
-      <div className="flex justify-between w-full max-w-6xl px-4 absolute bottom-4 md:bottom-8">
-        <button onClick={() => scrollToSection('home')} className="text-4xl text-white hover:text-gray-300 transition duration-300 ease-in-out">
-            ↑
-        </button>
-        <button onClick={() => scrollToSection('experience')} className="text-4xl text-white hover:text-gray-300 transition duration-300 ease-in-out">
-            ↓
-        </button>
       </div>
     </section>
   );
 };
 
-export default AboutSection;
+export default About;
